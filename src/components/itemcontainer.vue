@@ -4,8 +4,9 @@
     		<span class="num_tip" v-if="fatherComponent == 'home'">{{level}}</span>
     		<span class="num_tip" v-if="fatherComponent == 'item'">题目{{itemNum}}</span>
     	</header>
-    	<div v-if="fatherComponent == 'home'" >
-    		<div class="home_logo item_container_style"></div>
+    	<div v-if="fatherComponent == 'home'" class="ov">
+    		<!-- <div class="home_logo item_container_style"></div> -->
+				<img class="home-title" src="../images/DIR/7.png" alt="" width="80%">
     		<router-link to="item" class="start button_style" ></router-link>
     	</div>
     	<div v-if="fatherComponent == 'item'" >
@@ -85,8 +86,8 @@ export default {
 	},
 	created(){
 		//初始化信息
-		this.initializeData();
-		document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
+		// this.initializeData();
+		// document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
 	}
 }
 </script>
@@ -97,7 +98,7 @@ export default {
 		height: 7.35rem;
 		width: 3.25rem;
 		top: -1.3rem;
-		right: 1.6rem;
+		left: 1.6rem;
 		background: url(../images/WechatIMG2.png) no-repeat;
 		background-size: 100% 100%;
 		z-index: 10;
@@ -122,28 +123,28 @@ export default {
 		top: 4.1rem;
 		left: 1rem;
 	}	
-	.home_logo{
-		background-image: url(../images/1-2.png);
-		background-size: 13.142rem 100%;
-		background-position: right center;
+	.home-title{
+		margin: 0 auto;
+    display: block;
+    margin-top: 6.3rem;
 	}
 	.item_back{
 		background-image: url(../images/2-1.png);
 		background-size: 100% 100%;
 	}
 	.button_style{
-        display: block;
-        height: 2.1rem;
-        width: 4.35rem;
-        background-size: 100% 100%;
-        position: absolute;
-        top: 16.5rem;
-        left: 50%;
-        margin-left: -2.4rem;
-        background-repeat: no-repeat;
+		display: block;
+    height: 4.7rem;
+    width: 7.35rem;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 16.9rem;
+    left: 58.8%;
+    margin-left: -2.4rem;
+    background-repeat: no-repeat;
 	}
 	.start{
-        background-image: url(../images/1-4.png);
+        background-image: url(../images/DIR/8.png);
     }
     .next_item{
     	background-image: url(../images/2-2.png);

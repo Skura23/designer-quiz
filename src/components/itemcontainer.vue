@@ -1,17 +1,29 @@
 <template>
   	<section>
-    	<header class="top_tips">
-    		<span class="num_tip" v-if="fatherComponent == 'home'">{{level}}</span>
-    		<span class="num_tip" v-if="fatherComponent == 'item'">题目{{itemNum}}</span>
+    	<header :class="{'top_tips':fatherComponent == 'item'}">
+    		<span class="num_tip" v-if="fatherComponent == 'item'">{{itemNum}}</span>
     	</header>
     	<div v-if="fatherComponent == 'home'" class="ov">
     		<!-- <div class="home_logo item_container_style"></div> -->
 				<img class="home-title" src="../images/DIR/7.png" alt="" width="80%">
 				<!-- <div>你好啊</div> -->
-    		<router-link to="item" class="start button_style" ></router-link>
+    		<div class="start button_style" ></div>
+    		<router-link to="item" tag="div" class="home-mask" ></router-link>
+        <!-- <div class="" to="item"></div> -->
     	</div>
     	<div v-if="fatherComponent == 'item'" >
-    		<div class="item_back item_container_style">
+        <div class="item-wra ov" :class="">
+          <p class="tc">safaf</p>
+          <div class="answers">
+            <div class="ans-i">
+              <p>234</p>
+              <p>234</p>
+              <p>234</p>
+              <p>234</p>
+            </div>
+          </div>
+        </div>
+    		<!-- <div class="item_back item_container_style">
     			<div class="item_list_container" v-if="itemDetail.length > 0">
     				<header class="item_title">{{itemDetail[itemNum-1].topic_name}}</header>
     				<ul>
@@ -21,9 +33,7 @@
     					</li>
     				</ul>
     			</div>
-    		</div>
-    		<span class="next_item button_style" @click="nextItem" v-if="itemNum < itemDetail.length"></span>
-    		<span class="submit_item button_style" v-else @click="submitAnswer"></span>
+    		</div> -->
     	</div>
   	</section>
 </template>
@@ -75,6 +85,7 @@ export default {
     choosed(type, id) {
       this.choosedNum = type;
       this.choosedId = id;
+      this.nextItem();
     },
     //到达最后一题，交卷，请空定时器，跳转分数页面
     submitAnswer() {
@@ -88,9 +99,8 @@ export default {
     }
   },
   created() {
-    //初始化信息
-    // this.initializeData();
-    // document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
+    // 初始化信息
+    this.initializeData();
   }
 };
 </script>
@@ -103,28 +113,36 @@ export default {
   src: url("../style/Litchi.ttf") format("truetype");
 }
 
+.home-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
 body {
   color: #000;
 }
 .top_tips {
   position: absolute;
-  height: 7.35rem;
+  height: 3.25rem;
   width: 3.25rem;
-  top: -1.3rem;
+  top: 1.7rem;
   left: 1.6rem;
-  background: url(../images/WechatIMG2.png) no-repeat;
+  background: url(../images/DIR/12.png) no-repeat;
   background-size: 100% 100%;
   z-index: 10;
   .num_tip {
     position: absolute;
     left: 0.48rem;
-    bottom: 1.1rem;
-    height: 0.7rem;
-    width: 2.5rem;
-    font-size: 0.6rem;
-    font-family: "黑体";
-    font-weight: 600;
-    color: #a57c50;
+    bottom: 1.3rem;
+    // height: 0.7rem;
+    // width: 2.5rem;
+    font-size: 1.6rem;
+    // font-family: "黑体";
+    // color: #a57c50;
     text-align: center;
   }
 }
@@ -139,12 +157,12 @@ body {
 .home-title {
   margin: 0 auto;
   display: block;
-  margin-top: 6.3rem;
+  margin-top: 5.9rem;
 }
-.item_back {
-  background-image: url(../images/2-1.png);
-  background-size: 100% 100%;
-}
+// .item_back {
+//   background-image: url(../images/2-1.png);
+//   background-size: 100% 100%;
+// }
 .button_style {
   display: block;
   height: 4.7rem;
@@ -207,6 +225,59 @@ body {
   .option_detail {
     width: 7.5rem;
     padding-top: 0.11rem;
+  }
+}
+
+.item-wra {
+  // width: 8rem;
+  position: absolute;
+  top: 5.7rem;
+  left: 1.7rem;
+  right: 1.7rem;
+  border: 2px solid #0e050a;
+  border-radius: 0.5rem;
+  box-shadow: 0.17rem 0.17rem #deaf1f;
+  >p {
+    padding: 0.7rem 0;
+    background: #0e050a;
+    color: #ffe100;
+    &:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      left: 0.1rem;
+      top: 0.1rem;
+      width: 1.9rem;
+      height: 0.7rem;
+      background: url(../images/DIR/13.png) no-repeat;
+      background-size: contain;
+    }
+  }
+  .answers {
+    background: #fff;
+    padding: 1rem;
+    .ans-i{
+      width: 100%;
+      height: 100%;
+      position: relative;
+      &:before{
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 100%;
+        border: 2px dashed #393939;
+        top: 50%;
+      }
+      &:after{
+        content: " ";
+        display: block;
+        position: absolute;
+        height: 100%;
+        border: 2px dashed #393939;
+        left: 50%;
+        top: 0;
+      }
+    }
   }
 }
 </style>

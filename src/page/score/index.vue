@@ -1,9 +1,9 @@
 <template>
   	<div>
     	<div class="your_scores_container">
-            <header class="your_scores"><span class="score_num">{{score}}</span><span class="fenshu">分！</span></header>
-            <div class="result_tip">{{scoreTips}}</div>
-        </div>
+          <header class="your_scores"><span class="score_num">{{score}}</span><span class="fenshu">分！</span></header>
+          <div class="result_tip">{{scoreTips}}</div>
+      </div>
         <div class="share_button" @click="showCover"></div>
         <div class="share_code">
             <header class="share_header">关注葡萄之家，获取答案。</header>

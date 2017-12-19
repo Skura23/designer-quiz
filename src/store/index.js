@@ -16,7 +16,7 @@ const state = {
 		"topic_id": 20,
 		"active_topic_id": 4,
 		"type": "ONE",
-		"topic_name": "题目一",
+		"topic_name": "下面哪个图标是对的",
 		"active_id": 1,
 		"active_title": "欢乐星期五标题",
 		"active_topic_phase": "第一周",
@@ -26,28 +26,32 @@ const state = {
 			"topic_answer_id": 1,
 			"topic_id": 20,
 			"answer_name": "答案aaaa",
+			"answer_img": "1_2.png",
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 2,
 			"topic_id": 20,
 			"answer_name": "正确答案",
-			"is_standard_answer": 0
+			"answer_img": "1_1.png",
+			"is_standard_answer": 1
 		}, {
 			"topic_answer_id": 3,
 			"topic_id": 20,
 			"answer_name": "答案cccc",
+			"answer_img": "1_3.png",
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 4,
 			"topic_id": 20,
 			"answer_name": "答案dddd",
-			"is_standard_answer": 1
+			"answer_img": "1_4.png",
+			"is_standard_answer": 0
 		}]
 	}, {
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",
-		"topic_name": "题目二",
+		"topic_name": "2",
 		"active_id": 1,
 		"active_title": "欢乐星期五标题",
 		"active_topic_phase": "第一周",
@@ -78,7 +82,7 @@ const state = {
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",
-		"topic_name": "题目三",
+		"topic_name": "3",
 		"active_id": 1,
 		"active_title": "欢乐星期五标题",
 		"active_topic_phase": "第一周",
@@ -109,7 +113,7 @@ const state = {
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",
-		"topic_name": "题目四",
+		"topic_name": "4",
 		"active_id": 1,
 		"active_title": "欢乐星期五标题",
 		"active_topic_phase": "第一周",
@@ -140,7 +144,7 @@ const state = {
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",
-		"topic_name": "题目五",
+		"topic_name": "5",
 		"active_id": 1,
 		"active_title": "欢乐星期五标题",
 		"active_topic_phase": "第一周",

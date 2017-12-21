@@ -131,6 +131,9 @@ export default {
     z-index: 1;
   }
 }
+.to-save-img{
+  font-size: 0;
+}
 .save-btn {
   width: 5.8rem;
   display: inline-block;

@@ -1,4 +1,6 @@
 import Vue from 'vue'
+// import domToImage from 'dom-to-image'
+// import fileSaver from 'file-saver'
 import VueRouter from 'vue-router'
 import routes from './router/router'
 import store from './store/'

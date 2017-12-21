@@ -56,6 +56,7 @@ export default {
     };
   },
   props: ["fatherComponent"],
+  // 通过mapState方法获取state里的数据到本地
   computed: mapState([
     "itemNum", //第几题
     "level", //第几周
@@ -178,20 +179,20 @@ body {
 //   background-image: url(../images/2-1.png);
 //   background-size: 100% 100%;
 // }
-// .button_style {
-//   display: block;
-//   height: 4.7rem;
-//   width: 7.35rem;
-//   background-size: 100% 100%;
-//   position: absolute;
-//   top: 16.9rem;
-//   left: 58.8%;
-//   margin-left: -2.4rem;
-//   background-repeat: no-repeat;
-// }
-// .start {
-//   background-image: url(../images/DIR/8.png);
-// }
+.button_style {
+  display: block;
+  height: 4.7rem;
+  width: 7.35rem;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 16.9rem;
+  left: 58.8%;
+  margin-left: -2.4rem;
+  background-repeat: no-repeat;
+}
+.start {
+  background-image: url(../images/DIR/8.png);
+}
 // .next_item {
 //   background-image: url(../images/2-2.png);
 // }

@@ -345,7 +345,7 @@ const state = {
 	}
 ],
 	answerid: [], //答案id
-	// quesImg
+	scoreData:{}
 }
 
 export default new Vuex.Store({

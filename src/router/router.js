@@ -19,6 +19,16 @@ export default [
         path: "/score",
         component: r =>
           require.ensure([], () => r(require("../page/score")), "score")
+      },
+      {
+        path: "/answers",
+        component: r =>
+          require.ensure([], () => r(require("../page/answers")), "answers")
+      },
+      {
+        path: "/scoreImg",
+        component: r =>
+          require.ensure([], () => r(require("../page/scoreImg")), "scoreImg")
       }
     ]
   }

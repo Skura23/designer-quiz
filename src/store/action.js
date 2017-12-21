@@ -11,5 +11,8 @@ export default {
 	//初始化信息
 	initializeData({ commit }) {
 		commit('INITIALIZE_DATA');
+	},
+	getScoreData({ commit }, data){
+		commit('GET_SCORE_DATA',data);
 	}
 }

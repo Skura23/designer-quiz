@@ -1,13 +1,13 @@
 <template>
   <div>
-      <img src="/static/18.jpg" width="100%"  alt="" class="answers">
+      <img src="~static/18.jpg" width="100%"  alt="" class="answers">
   </div>
 </template>
 
 <script type='text/babel'>
 export default {
   created(){
-    
+
   }
 }
 </script>

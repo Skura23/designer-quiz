@@ -13,14 +13,17 @@
     	</div>
     	<div v-if="fatherComponent == 'item'" >
         <div class="item-wra ov" :class="'ques'+itemNum">
+        <!-- <img src="../../static/1_1.png" alt=""> -->
+          
           <p class="tc">{{itemDetail[itemNum-1].topic_name}}</p>
           <div class="answers">
             <div class="ans-i">
               <div class="tc mb" v-if="itemNum == 8">
-              <img width="60%" :src="'/static/'+itemDetail[itemNum-1].quesImg" alt="">
+              <img width="60%" :src="itemDetail[itemNum-1].quesImg" alt="">
               </div>
               <p class="opt" v-for="(item, index) in itemDetail[itemNum-1].topic_answer" @click="choosed(index, item.topic_answer_id)">
-                <img v-if="item.answer_img" :src="'/static/'+item.answer_img" width="100%" alt="">
+                <!-- 坑点: webpack无法识别并编译:src, 需手动require -->
+                <img v-if="item.answer_img" :src="item.answer_img" width="100%" alt="">
                 <span v-if="item.answer_name"><i>{{chooseType(index)}}.</i>{{item.answer_name}}</span>
               </p>
               <!-- <p>234</p>
@@ -138,9 +141,9 @@ body {
 }
 .top_tips {
   position: absolute;
-  height: 3.25rem;
-  width: 3.25rem;
-  top: 1.7rem;
+  height: 2.7rem;
+  width: 2.7rem;
+  top: 0.8rem;
   left: 1.6rem;
   background: url(../images/DIR/12.png) no-repeat;
   background-size: 100% 100%;
@@ -151,14 +154,14 @@ body {
     bottom: 1.3rem;
     // height: 0.7rem;
     // width: 2.5rem;
-    font-size: 1.6rem;
+    font-size: 1.23rem;
     // font-family: "黑体";
     // color: #a57c50;
     text-align: center;
   }
-  .item10{
-    font-size: 1.4rem;
-    text-indent: -9px;
+  .num_tip.item10 {
+    font-size: 1.2rem;
+    text-indent: -4px;
   }
 }
 
@@ -171,9 +174,9 @@ body {
   left: 1rem;
 }
 .home-title {
-  margin: 0 auto;
-  display: block;
-  margin-top: 5.9rem;
+  position: absolute;
+  left: 1.5rem;
+  top: 19%;
 }
 // .item_back {
 //   background-image: url(../images/2-1.png);
@@ -185,7 +188,7 @@ body {
   width: 7.35rem;
   background-size: 100% 100%;
   position: absolute;
-  top: 16.9rem;
+  bottom: 6.4rem;
   left: 58.8%;
   margin-left: -2.4rem;
   background-repeat: no-repeat;
@@ -247,7 +250,7 @@ body {
 .item-wra {
   // width: 8rem;
   position: absolute;
-  top: 5.7rem;
+  top: 4.2rem;
   left: 1.7rem;
   right: 1.7rem;
   border: 2px solid #0e050a;
@@ -398,7 +401,7 @@ body {
         height: 100%;
         position: relative;
         > p {
-          background: url(/static/10.png) no-repeat;
+          background: url(~static/10.png) no-repeat;
           background-size: 100% 100%;
           padding: 8px;
           text-align: center;

@@ -26,25 +26,25 @@ const state = {
 			"topic_answer_id": 1,
 			"topic_id": 20,
 			"answer_name": "",
-			"answer_img": "1_1.png",
+			"answer_img": require('../../static/1_1.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 2,
 			"topic_id": 20,
 			"answer_name": "",
-			"answer_img": "1_2.png",
+			"answer_img": require('../../static/1_2.png'),
 			"is_standard_answer": 1
 		}, {
 			"topic_answer_id": 3,
 			"topic_id": 20,
 			"answer_name": "",
-			"answer_img": "1_3.png",
+			"answer_img": require('../../static/1_3.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 4,
 			"topic_id": 20,
 			"answer_name": "",
-			"answer_img": "1_4.png",
+			"answer_img": require('../../static/1_4.png'),
 			"is_standard_answer": 0
 		}]
 	}, {
@@ -92,25 +92,25 @@ const state = {
 			"topic_answer_id": 9,
 			"topic_id": 21,
 			"answer_name": "青柠调酒黄",
-			"answer_img": "4_1.png",
+			"answer_img": require('../../static/4_1.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 10,
 			"topic_id": 21,
 			"answer_name": "紫外光",
-			"answer_img": "4_2.png",
+			"answer_img": require('../../static/4_2.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 11,
 			"topic_id": 21,
 			"answer_name": "树脂绿",
-			"answer_img": "4_3.png",
+			"answer_img": require('../../static/4_3.png'),
 			"is_standard_answer": 1
 		}, {
 			"topic_answer_id": 12,
 			"topic_id": 21,
 			"answer_name": "暖沙色",
-			"answer_img": "4_4.png",
+			"answer_img": require('../../static/4_4.png'),
 			"is_standard_answer": 0
 		}]
 	}, {
@@ -190,25 +190,25 @@ const state = {
 			"topic_answer_id": 21,
 			"topic_id": 21,
 			"answer_name": "",
-			"answer_img": "2_1.png",
+			"answer_img":  require('../../static/2_1.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 22,
 			"topic_id": 21,
 			"answer_name": "",
-			"answer_img": "2_2.png",
+			"answer_img":  require('../../static/2_2.png'),
 			"is_standard_answer": 1
 		}, {
 			"topic_answer_id": 23,
 			"topic_id": 21,
 			"answer_name": "",
-			"answer_img": "2_3.png",
+			"answer_img":  require('../../static/2_3.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 24,
 			"topic_id": 21,
 			"answer_name": "",
-			"answer_img": "2_4.png",
+			"answer_img":  require('../../static/2_4.png'),
 			"is_standard_answer": 0
 		}]
 	}, {
@@ -252,7 +252,7 @@ const state = {
 		"active_topic_phase": "第一周",
 		"active_start_time": "1479139200",
 		"active_end_time": "1482163200",
-		"quesImg":'9.png',
+		"quesImg":require('../../static/9.png'),
 		"topic_answer": [{
 			"topic_answer_id": 29,
 			"topic_id": 21,
@@ -289,25 +289,25 @@ const state = {
 			"topic_answer_id": 33,
 			"topic_id": 21,
 			"answer_name": "村上隆",
-			"answer_img": "3_1.png",
+			"answer_img": require('../../static/3_1.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 34,
 			"topic_id": 21,
 			"answer_name": "草间弥生",
-			"answer_img": "3_2.png",
+			"answer_img": require('../../static/3_2.png'),
 			"is_standard_answer": 0
 		}, {
 			"topic_answer_id": 35,
 			"topic_id": 21,
 			"answer_name": "杉浦康平",
-			"answer_img": "3_3.png",
+			"answer_img": require('../../static/3_3.png'),
 			"is_standard_answer": 1
 		}, {
 			"topic_answer_id": 36,
 			"topic_id": 21,
 			"answer_name": "田中一光",
-			"answer_img": "3_4.png",
+			"answer_img": require('../../static/3_4.png'),
 			"is_standard_answer": 0
 		}]
 	},

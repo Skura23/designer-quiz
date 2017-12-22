@@ -18,6 +18,12 @@ export default {
     // created内不能用原来的路径 '../../images/DIR/1.png' 么?
     // 因为此时页面已解析完成?
     document.body.style.backgroundImage = 'url(./static/img/1.png)';
+  },
+  mounted(){
+    var music = document.getElementsByClassName("music")[0];
+    if (music) {
+      music.style.display="block"
+    }
   }
 };
 </script>

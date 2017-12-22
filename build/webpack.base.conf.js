@@ -26,6 +26,8 @@ module.exports = {
             'vue$': 'vue/dist/vue.common.js',
             'src': path.resolve(__dirname, '../src'),
             'assets': path.resolve(__dirname, '../src/assets'),
+            // 使用此语句~static可找到static文件夹
+            'static': path.resolve(__dirname, '../static'),
             'components': path.resolve(__dirname, '../src/components')
         }
     },

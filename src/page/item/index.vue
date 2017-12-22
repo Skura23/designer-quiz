@@ -18,6 +18,8 @@ export default {
     // document.body.style.backgroundImage = 'url(../../images/DIR/16.jpg)';
     //进入题目页面，开始计时
     this.$store.commit("REMBER_TIME");
+    var music = document.getElementsByClassName("music")[0];
+    music.style.display="block"
   }
 };
 </script>

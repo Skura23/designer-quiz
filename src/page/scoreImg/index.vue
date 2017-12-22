@@ -2,7 +2,7 @@
   <div>
     <div class="me-score re">
       <div id="to-save-img">
-      <img src="/static/19.jpg" width="100%" alt="">
+      <img src="~static/19.jpg" width="100%" id="bac-img" alt="">
       <p class="p1">
         杨帅
       </p>
@@ -14,12 +14,12 @@
       <p class="p5 tc">你的身价</p>
       <p class="p6 tc">¥{{scoreData.worth}}</p>
       <p class="p7">{{scoreData.tip}}</p>
-      <img src="/static/21.jpg" class="qrimg" alt="">
+      <img src="~static/21.jpg" class="qrimg" alt="">
       </div>
     </div>
-    <br>
-    <div class="tc">
-    <img src="/static/20.png" width="5.8rem" alt="" class="save-btn" @click="saveImg">
+    
+    <div class="tc save-note">
+    <p class="tc">↓长按图片保存到手机</p>
     </div>
   </div>
 </template>
@@ -32,8 +32,15 @@ import fileSaver from "file-saver";
 console.log(fileSaver, domToImage);
 
 export default {
-  created() {
+  // 要用mounted而不是created否则获取不到dom node
+  mounted() {
+    var _this = this;
     document.body.style.background = "#000000";
+    var bacImg = document.getElementById("bac-img");
+    var qrimg = document.getElementsByClassName("qrimg")[0];
+    qrimg.onload = function() {
+      _this.saveImg();
+    };
   },
   computed: mapState(["scoreData"]),
   methods: {
@@ -44,8 +51,32 @@ export default {
       domToImage
         .toBlob(document.getElementById("to-save-img"))
         .then(function(blob) {
-          fileSaver.saveAs(blob, "我的评测.png");
+          console.log(blob);
+          saveBlobAsFile(blob, "我的评测.png");
+          // fileSaver.saveAs(blob, "我的评测.png");
         });
+      function saveBlobAsFile(blob, fileName) {
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+          var base64 = reader.result;
+          var img = document.createElement("img");
+          img.classList.add("me-img");
+          img.setAttribute("src", base64);
+          // img.setAttribute("download", fileName);
+          console.log(img);
+          document.getElementById("to-save-img").appendChild(img);
+
+          // var link = document.createElement("a");
+
+          // link.setAttribute("href", base64);
+          // link.setAttribute("download", fileName);
+          // link.click();
+          // console.log(link);
+        };
+
+        reader.readAsDataURL(blob);
+      }
     }
   }
 };
@@ -97,6 +128,7 @@ export default {
       left: 1.1rem;
       color: #00ff66;
       font-size: 1.15rem;
+      font-weight: bold;
     }
     &.p5 {
       top: 10rem;
@@ -111,6 +143,7 @@ export default {
       left: 1.1rem;
       color: #00ff66;
       font-size: 1.15rem;
+      font-weight: bold;
     }
     &.p7 {
       top: 13rem;
@@ -126,13 +159,28 @@ export default {
   .qrimg {
     position: absolute;
     left: 9.12rem;
-    top: 16.8rem;
+    top: 16.7rem;
     width: 2.6rem;
     z-index: 1;
   }
+  .me-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
 }
-#to-save-img{
+#to-save-img {
   font-size: 0;
+}
+
+.save-note {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  .tc {
+    color: #fee31a;
+    font-family: "Litchi";
+  }
 }
 .save-btn {
   width: 5.8rem;

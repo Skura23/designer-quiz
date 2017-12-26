@@ -20,10 +20,24 @@ export default {
     document.body.style.backgroundImage = 'url(./static/img/1.png)';
   },
   mounted(){
+    // 判断是否为微信浏览器
+    function isWeiXin() {
+      var ua = window.navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+      } else {
+        return false;
+      }
+    }
     var music = document.getElementsByClassName("music")[0];
     if (music) {
       music.style.display="block"
     }
+    // if (!isWeiXin()) {
+    //   music.style.display="none"
+    //   document.body.style.background = "none";
+    //   document.getElementById("aud").pause();
+    // }
   }
 };
 </script>

@@ -9,7 +9,7 @@
 									<img id="pause" src="../static/24.png" hidden />
 					</a>
 					<audio id="aud" loop autoplay hidden>
-						<source src="../static/22.mp3" type="audio/mpeg" />
+						<source src="./static/22.mp3" type="audio/mpeg" />
 					</audio>
 		</div>
 		<router-view></router-view>

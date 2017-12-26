@@ -3,14 +3,18 @@
     	<header :class="{'top_tips':fatherComponent == 'item'}">
     		<span class="num_tip" :class="{'item10':itemNum==10}" v-if="fatherComponent == 'item'">{{itemNum}}</span>
     	</header>
-    	<div v-if="fatherComponent == 'home'" class="ov">
+    	<div v-if="fatherComponent == 'home'" class="ov" >
     		<!-- <div class="home_logo item_container_style"></div> -->
+        <!-- <p v-text="openIdName"></p> -->
 				<img class="home-title" src="../images/DIR/7.png" alt="" width="80%">
 				<!-- <div>你好啊</div> -->
     		<div class="start button_style" ></div>
     		<router-link to="item" tag="div" class="home-mask" ></router-link>
         <!-- <div class="" to="item"></div> -->
     	</div>
+      <!-- <div v-if="fatherComponent == 'home' ">
+        <p>请在微信端打开页面</p>
+      </div> -->
     	<div v-if="fatherComponent == 'item'" >
         <div class="item-wra ov" :class="'ques'+itemNum">
         <!-- <img src="../../static/1_1.png" alt=""> -->
@@ -49,22 +53,31 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import store from "vuex";
+import ajax from "../config/ajax";
+
+console.log(mapState, store, ajax);
 export default {
   name: "itemcontainer",
   data() {
     return {
       itemId: null, //题目ID
       choosedNum: null, //选中答案索引
-      choosedId: null //选中答案id
+      choosedId: null, //选中答案id
+      // 是否为微信浏览器flag
+      wechatFlag: null
     };
   },
   props: ["fatherComponent"],
   // 通过mapState方法获取state里的数据到本地
+  // mapstate后的数据和之前没有了关联, 成为本地变量
+  // 若要提交更改, 需手动
   computed: mapState([
     "itemNum", //第几题
     "level", //第几周
     "itemDetail", //题目详情
-    "timer" //计时器
+    "timer", //计时器
+    "openIdName"
   ]),
   methods: {
     ...mapActions(["addNum", "initializeData"]),
@@ -115,6 +128,84 @@ export default {
   created() {
     // 初始化信息
     this.initializeData();
+    console.log(this.$store.state);
+  },
+  mounted() {
+    var _this = this;
+    var data = {},
+      cookieObj = {};
+    // 判断是否为微信浏览器
+    // function isWeiXin() {
+    //   var ua = window.navigator.userAgent.toLowerCase();
+    //   if (ua.match(/MicroMessenger/i) == "micromessenger") {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
+    // // 测试用openId: ozh2Tt9GrRvdcMX8OdnB3aTCR6co
+    // if (isWeiXin()) {
+      // this.wechatFlag = true;
+      cookieObj = document.cookie
+        .split(/[;] */)
+        .reduce(function(result, pairStr) {
+          var arr = pairStr.split("=");
+          if (arr.length === 2) {
+            result[arr[0]] = arr[1];
+          }
+          return result;
+        }, {});
+      data.openid = cookieObj.zigeer_wechatOpenid || "";
+      data.from = window.location.href;
+      // console.log(ajax);
+      // ajax(
+      //   "POST",
+      //   "http://demoweixin.zigeer.com/OAuth/GetWechatNickName",
+      //   data
+      // )(res)
+      // var request = new XMLHttpRequest();
+      // request.open('GET', "http://demoweixin.zigeer.com/OAuth/GetWechatNickName", true);
+      // request.onload = function() {
+      //   if (request.status >= 200 && request.status < 400) {
+      //     // Success!
+      //     var resp = request.responseText;
+      //     console.log(resp);
+      //   } else {
+      //     // We reached our target server, but it returned an error
+      //     console.log('error');
+      //   }
+      // };
+      // request.onerror = function() {
+      //   // There was a connection error of some sort
+      // };
+      // request.send();
+      // // console.log(a);
+      $.ajax({
+        type:'POST',
+        url: '/OAuth/GetWechatNickName',
+        data:data,
+        success(r){
+          if (r.ErrorCode == 0) {
+            _this.$store.state.openIdName = r.Result.NickName;
+          } else {
+            window.location.href = r.ErrorResult.ErrorRedirectUrl;
+          }
+        }
+      })
+        
+      // function rej(r) {
+
+      // }
+      
+
+      console.log("aa");
+    // } else {
+    //   this.wechatFlag = false;
+    //   document.body.style.background = "none";
+    //   document.getElementById("aud").pause();
+    //   document.getElementsByClassName("music")[0].style.display = "none";
+    //   console.log("bb");
+    // }
   }
 };
 </script>
@@ -364,14 +455,14 @@ body {
   &.ques7 {
     p.opt {
       font-size: 0.7rem;
-      &:nth-child(3){
-        padding-left: 1.3rem!important;
-        padding-right: 1.3rem!important;
+      &:nth-child(3) {
+        padding-left: 1.3rem !important;
+        padding-right: 1.3rem !important;
       }
     }
   }
   &.ques8 {
-    .ans-i{
+    .ans-i {
       // text-align: center;
       overflow: hidden;
     }
@@ -379,11 +470,12 @@ body {
       float: left;
       font-size: 0.6rem;
       width: 4.7rem;
-      &:nth-child(3),&:nth-child(5){
+      &:nth-child(3),
+      &:nth-child(5) {
         margin-left: 0.8rem;
       }
     }
-  }  
+  }
 
   // 第二题及其他纯文字题的answers样式
   // 有背景, 有虚线, 非absolute

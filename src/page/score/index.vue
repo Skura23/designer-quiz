@@ -1,7 +1,7 @@
 <template>
   	<div>
     	<div class="me-title">
-          <p>杨帅</p>
+          <p v-text="openIdName">杨帅</p>
           <p>依据IDR全球设计师排行榜测试</p>
       </div>
       <div class="me-info re">
@@ -63,17 +63,17 @@ export default {
       ],
       // 身价集合
       worthArr: [
-        2000000,
+        20000000,
+        10000000,
+        5000000,
+        2500000,
+        1500000,
         1000000,
-        500000,
-        250000,
-        150000,
+        600000,
+        400000,
+        300000,
         100000,
-        60000,
-        40000,
-        30000,
-        10000,
-        10000
+        100000
       ],
       // 排名
       meRank: "",
@@ -81,7 +81,7 @@ export default {
       img6: require("../../../static/6.png")
     };
   },
-  computed: mapState(["answerid", "allTime", "scoreData"]),
+  computed: mapState(["answerid", "allTime", "scoreData", "openIdName"]),
   created() {
     this.computedScore();
     this.getMeRank();
@@ -90,7 +90,6 @@ export default {
     var music = document.getElementsByClassName("music")[0];
     // console.log(music);
     music.style.display="none"
-    // music
   },
   methods: {
     ...mapActions(["getScoreData"]),
@@ -153,7 +152,7 @@ export default {
       }
       function getRank(floorNum, ceilNum, randomScope) {
         console.log(_this.rightNum);
-        var randomScope = randomScope || 1;
+        // var randomScope = randomScope || 1;
         var n = _this.allTime > 10 ? _this.allTime : 10;
         var worth = _this.worthArr[10 - _this.rightNum];
         var tip = _this.scoreTipsArr[10 - _this.rightNum];
@@ -162,7 +161,7 @@ export default {
         var randomNum = null,
           maxN = null;
         var data = [];
-        randomNum = Math.floor(Math.random() * 9 + randomScope);
+        randomNum =randomScope? Math.floor(Math.random() * 9 + randomScope):1;
         // 为后七种情况设置rank极值
         if (floorNum > 51) {
           maxN = Math.floor((ceilNum - floorNum) / randomNum + 10);
@@ -231,6 +230,7 @@ body {
   }
   .p2 {
     font-size: 1.5rem;
+    font-weight: bold;
   }
   > div:first-child {
     border-bottom: 2px dashed #ffe520;

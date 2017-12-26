@@ -7,7 +7,7 @@
         
       </p>
       <p class="p2">
-        依据IDR全球设计师排行榜测试
+        在IDR全球三千万设计师排行榜中
       </p>
       <p class="p3 tc">你的排名</p>
       <p class="p4 tc">No.{{scoreData.rank}}</p>
@@ -39,10 +39,10 @@ import fileSaver from "file-saver";
 console.log(fileSaver, domToImage);
 
 export default {
-  data(){
+  data() {
     return {
-      imgUrl:''
-    }
+      imgUrl: ""
+    };
   },
   // 要用mounted而不是created否则获取不到dom node
   mounted() {
@@ -58,30 +58,30 @@ export default {
   methods: {
     // ...mapActions(["addNum", "initializeData"]),
     saveImg() {
-      var _this = this
-      var node = document.getElementById("to-save-img")
+      var _this = this;
+      var node = document.getElementById("to-save-img");
       console.log(node);
       // console.log(domToImage.toPng);
-        // domToImage.toPng(node).then((dataUrl) => {
-        //   console.log('aaa');
-        //   var img = new Image()
-        //   img.src = dataUrl
-        //   this.imgUrl = img.src
-        // })
-        // let b64;
-        // console.log(html2canvas);
-        // html2canvas(node, {
-        //   useCORS: true
-        // }).then(function(canvas) {
-        //   try {
-        //     b64 = canvas.toDataURL("image/png");
-        //     console.log('aa');
-        //   } catch (err) {
-        //       // alert(err)
-        //   }
-        //   _this.imgUrl = b64
-        // }).catch(function onRejected(error) {});
-    //   console.log(fileSaver, domToImage);
+      // domToImage.toPng(node).then((dataUrl) => {
+      //   console.log('aaa');
+      //   var img = new Image()
+      //   img.src = dataUrl
+      //   this.imgUrl = img.src
+      // })
+      // let b64;
+      // console.log(html2canvas);
+      // html2canvas(node, {
+      //   useCORS: true
+      // }).then(function(canvas) {
+      //   try {
+      //     b64 = canvas.toDataURL("image/png");
+      //     console.log('aa');
+      //   } catch (err) {
+      //       // alert(err)
+      //   }
+      //   _this.imgUrl = b64
+      // }).catch(function onRejected(error) {});
+      //   console.log(fileSaver, domToImage);
       // var node = document.getElementById('my-node');
       // domToImage
       //   .toBlob(document.getElementById("to-save-img"))
@@ -98,35 +98,52 @@ export default {
       //   };
       //   reader.readAsDataURL(blob);
       // }
-    // var div = $("#to-save-img").get(0);
-    // var rect = div.getBoundingClientRect();
+      // var div = $("#to-save-img").get(0);
+      // var rect = div.getBoundingClientRect();
 
-    // var canvas = document.createElement("canvas");
-    // canvas.width = rect.width;
-    // canvas.height = rect.height;
+      // var canvas = document.createElement("canvas");
+      // canvas.width = rect.width;
+      // canvas.height = rect.height;
 
-    // var ctx = canvas.getContext("2d");
-    // ctx.translate(-rect.left,-rect.top);
+      // var ctx = canvas.getContext("2d");
+      // ctx.translate(-rect.left,-rect.top);
 
-    // html2canvas(div, {
-    //     canvas:canvas,
-    //     height:rect.height,
-    //     width:rect.width,
-    //     onrendered: function(canvas) {
-    //         var image = canvas.toDataURL("image/png");
-    //         var pHtml = "<img class='me-img' src="+image+" />";
-    //         $("#to-save-img").append(pHtml);
-    //     }
-    // });
-    // }
+      // html2canvas(div, {
+      //     canvas:canvas,
+      //     height:rect.height,
+      //     width:rect.width,
+      //     onrendered: function(canvas) {
+      //         var image = canvas.toDataURL("image/png");
+      //         var pHtml = "<img class='me-img' src="+image+" />";
+      //         $("#to-save-img").append(pHtml);
+      //     }
+      // });
+      // }
+      // 配置canvas, 解决图片失真问题
+      var dom = $('#to-save-img')
+      var width = dom.width();
+      var height = dom.height();
+      var type = "png";
+      var scaleBy = 1.4; //缩放比例
+      var canvas = document.createElement("canvas");
+      var rect = dom.get(0).getBoundingClientRect();
+      canvas.width = width * scaleBy;
+      canvas.height = height * scaleBy; 
+      canvas.style.width = width * scaleBy + "px";
+      canvas.style.height = height * scaleBy + "px";
+      var context = canvas.getContext("2d");
+      context.scale(scaleBy, scaleBy);
+      // 解决图片偏移问题
+      context.translate(-rect.left,-rect.top);
 
-    html2canvas(document.getElementById("to-save-img"), {
-      onrendered: function(canvas) {
-        var img = canvas.toDataURL()
-        _this.imgUrl = img
-        $('.img-mask').hide()
-      }
-    });
+      html2canvas(dom, {
+        canvas,
+        onrendered: function(canvas) {
+          var img = canvas.toDataURL();
+          _this.imgUrl = img;
+          $(".img-mask").hide();
+        }
+      });
     }
   }
 };
@@ -134,9 +151,9 @@ export default {
 
 <style lang='less' rel='stylesheet/less'>
 .reset-font() {
-  font-family: initial;
+  font-family:"Times New Roman",Georgia,Serif;
   letter-spacing: 0;
-  font-size: 0.76rem;
+  font-size: 0.7rem;
 }
 
 .me-score {

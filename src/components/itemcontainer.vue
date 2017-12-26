@@ -28,7 +28,7 @@
               <p class="opt" v-for="(item, index) in itemDetail[itemNum-1].topic_answer" @click="choosed(index, item.topic_answer_id)">
                 <!-- 坑点: webpack无法识别并编译:src, 需手动require -->
                 <img v-if="item.answer_img" :src="item.answer_img" width="100%" alt="">
-                <span v-if="item.answer_name"><i>{{chooseType(index)}}.</i>{{item.answer_name}}</span>
+                <span v-if="item.answer_name"><i>{{chooseType(index)}}. </i>{{item.answer_name}}</span>
               </p>
               <!-- <p>234</p>
               <p>234</p>
@@ -135,16 +135,17 @@ export default {
     var data = {},
       cookieObj = {};
     // 判断是否为微信浏览器
-    // function isWeiXin() {
-    //   var ua = window.navigator.userAgent.toLowerCase();
-    //   if (ua.match(/MicroMessenger/i) == "micromessenger") {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
+    function isWeiXin() {
+      var ua = window.navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+      } else {
+        return false;
+      }
+    }
     // // 测试用openId: ozh2Tt9GrRvdcMX8OdnB3aTCR6co
-    // if (isWeiXin()) {
+    // 如果是微信则发起调用openid请求, 否则不发起
+    if (isWeiXin()) {
       // this.wechatFlag = true;
       cookieObj = document.cookie
         .split(/[;] */)
@@ -177,21 +178,21 @@ export default {
       // };
       // request.onerror = function() {
       //   // There was a connection error of some sort
-      // };
+        $.ajax({
+          type:'POST',
+          url: '/OAuth/GetWechatNickName',
+          data:data,
+          success(r){
+            if (r.ErrorCode == 0) {
+              _this.$store.state.openIdName = r.Result.NickName;
+            } else {
+              window.location.href = r.ErrorResult.ErrorRedirectUrl;
+            }
+          }
+        })
+      }
       // request.send();
       // // console.log(a);
-      $.ajax({
-        type:'POST',
-        url: '/OAuth/GetWechatNickName',
-        data:data,
-        success(r){
-          if (r.ErrorCode == 0) {
-            _this.$store.state.openIdName = r.Result.NickName;
-          } else {
-            window.location.href = r.ErrorResult.ErrorRedirectUrl;
-          }
-        }
-      })
         
       // function rej(r) {
 

@@ -2,19 +2,15 @@
   <div>
     <div class="me-score re">
       <div id="to-save-img">
-      <img src="~static/19.jpg" width="100%" id="bac-img" alt="">
-      <p class="p1" v-text="openIdName">
-        
-      </p>
-      <p class="p2">
-        在IDR全球三千万设计师排行榜中
-      </p>
-      <p class="p3 tc">你的排名</p>
-      <p class="p4 tc">No.{{scoreData.rank}}</p>
-      <p class="p5 tc">你的身价</p>
-      <p class="p6 tc">¥{{scoreData.worth}}</p>
-      <p class="p7">{{scoreData.tip}}</p>
-      <img src="~static/21.jpg" class="qrimg" alt="">
+      <img src="~static/26.jpg" width="100%" id="bac-img" alt="">
+      <div class="me-data">
+        <p class=" mt1 name ov" v-text="openIdName"></p>
+        <p class="_p1 mt1">全球设计\插画师排名</p>
+        <p class="_p2">{{scoreData.rank}}名</p>
+        <p class="_p1 mt1" >全球综合身价预估</p>
+        <p class="_p2">¥ {{scoreData.worth}}</p>
+      </div>
+      <!-- <img src="~static/21.jpg" class="qrimg" alt=""> -->
       </div>
       <div class="img-mask">
         <p>请稍等...</p>
@@ -26,6 +22,7 @@
     </div>
     
     <div class="tc save-note">
+      <div class="mask"></div>
     <p class="tc">↓长按图片保存到手机</p>
     </div>
   </div>
@@ -49,8 +46,8 @@ export default {
     var _this = this;
     document.body.style.background = "#000000";
     var bacImg = document.getElementById("bac-img");
-    var qrimg = document.getElementsByClassName("qrimg")[0];
-    qrimg.onload = function() {
+    // var qrimg = document.getElementsByClassName("qrimg")[0];
+    bacImg.onload = function() {
       _this.saveImg();
     };
   },
@@ -120,21 +117,24 @@ export default {
       // });
       // }
       // 配置canvas, 解决图片失真问题
-      var dom = $('#to-save-img')
+      var dom = $("#to-save-img");
+      var bacImg = $("#bac-img");
       var width = dom.width();
       var height = dom.height();
       var type = "png";
-      var scaleBy = 1.4; //缩放比例
+      //缩放比例, 用来调节图片分辨率. 原图750x1334
+      // var scaleBy = 750/width;
+      var scaleBy = 1.5;
       var canvas = document.createElement("canvas");
       var rect = dom.get(0).getBoundingClientRect();
       canvas.width = width * scaleBy;
-      canvas.height = height * scaleBy; 
+      canvas.height = height * scaleBy;
       canvas.style.width = width * scaleBy + "px";
       canvas.style.height = height * scaleBy + "px";
       var context = canvas.getContext("2d");
       context.scale(scaleBy, scaleBy);
       // 解决图片偏移问题
-      context.translate(-rect.left,-rect.top);
+      context.translate(-rect.left, -rect.top);
 
       html2canvas(dom, {
         canvas,
@@ -149,9 +149,9 @@ export default {
 };
 </script>
 
-<style lang='less' rel='stylesheet/less'>
+<style lang='less' rel='stylesheet/less' scoped>
 .reset-font() {
-  font-family:"Times New Roman",Georgia,Serif;
+  font-family: Microsoft YaHei;
   letter-spacing: 0;
   font-size: 0.7rem;
 }
@@ -159,8 +159,9 @@ export default {
 .me-score {
   // margin: 0.5rem 1.7rem 0 1.7rem;
   position: relative;
-  width: 12.7rem;
-  left: 1.7rem;
+  width: 13.7rem;
+  left: 1.18rem;
+  top: 1.18rem;
   img {
     left: 0;
     top: 0;
@@ -185,7 +186,7 @@ export default {
     }
   }
   p {
-    position: absolute;
+    // position: absolute;
     .reset-font;
     &.p1 {
       top: 3.2rem;
@@ -242,11 +243,12 @@ export default {
       text-align: center;
     }
   }
+
   .qrimg {
     position: absolute;
-    left: 9.12rem;
-    top: 16.7rem;
-    width: 2.6rem;
+    left: 9.92rem;
+    top: 16.6rem;
+    width: 2.5rem;
     z-index: 1;
   }
   .me-img {
@@ -261,13 +263,65 @@ export default {
 #to-save-img {
   font-size: 0;
 }
-
+.me-data {
+  position: absolute;
+  font-size: 0.9rem;
+  top: 0;
+  left: 7.8rem;
+  .mt1 {
+    margin-top: 0.17rem;
+  }
+  p {
+    color: #fff;
+  }
+}
+.me-data {
+  width: 5.8rem;
+  ._p2,
+  .name {
+    color: #fff;
+    margin-top: 0.25rem;
+    .reset-font();
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+  ._p1 {
+    color: #d2bc00;
+    .reset-font();
+    font-family: "KaiTi";
+    font-size: 0.55rem;
+  }
+  .name {
+    margin-top: 0.45rem;
+    height: 1rem;
+  }
+}
+.reset-font() {
+  font-family: Microsoft YaHei;
+  letter-spacing: 0;
+  font-size: 0.76rem;
+}
 .save-note {
-  margin-top: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   font-size: 0.8rem;
+  height: 1.65rem;
+  z-index: 99;
   .tc {
+    height: 1.65rem;
+    line-height: 1.65rem;
     color: #fee31a;
     font-family: "Litchi";
+  }
+  .mask {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7;
   }
 }
 .save-btn {

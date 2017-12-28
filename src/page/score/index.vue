@@ -1,20 +1,23 @@
-<template>
-  	<div>
-    	<div class="me-title">
-          <p v-text="openIdName">杨帅</p>
-          <p>在IDR全球三千万设计师排行榜中</p>
-      </div>
-      <div class="me-info re">
-        <div class="up">
-          <p class="p1">你的排名</p>
-          <p class="p2 mb"> NO.{{scoreData.rank}}</p>
+<template id="score">
+  	<div style="height:100%">
+      <div class="page-wrap">
+    	<div class="me-data">
+        <img class="_bac ab" src="~static/25.jpg" alt="" width="100%">
+        <div class="me-info ov">
+          <p class="tc mt name" v-text="openIdName"></p>
+          <div class="me-num">
+            <div class="_l mt1">
+              <p class="p1 tc">全球设计\插画师排名</p>
+              <p class="p2 tc">{{scoreData.rank}}名</p>
+            </div>
+            <div class="_r mt1">
+              <p class="p1 tc">全球综合身价预估</p>
+              <p class="p2 tc">¥ {{scoreData.worth}}</p>
+            </div>
+          </div>
         </div>
-        <div class="down">
-          <p class="p1 mt">你的身价</p>
-          <p class="p2">¥{{scoreData.worth}}</p>
-        </div>
       </div>
-      <div class="me-descri tc mb">
+      <div class="me-descri tc mb mt1">
         <p>{{scoreData.tip}}</p>
       </div>
       <div class="btns">
@@ -22,9 +25,10 @@
         <router-link to="/scoreImg" tag="img" :src="img5"></router-link>
         <router-link to="/answers" tag="img" :src="img6"></router-link>
       </div>
-      <div class="logo">
-        <img src="~static/14.png" alt="">
       </div>
+      <footer class="site-footer tc">
+        <img src="~static/14.png" alt="" width="50px">
+      </footer>
         <!-- <div class="share_button" @click="showCover"></div>
         <div class="share_code">
             <header class="share_header">关注葡萄之家，获取答案。</header>
@@ -99,7 +103,7 @@ export default {
           "你被AI设计师取代的可能性高达66%"
         ],
         [
-          "改行吧, 你更适合做",
+          "改行吧, 你更适合做甲方",
           "恭喜你，你的身价和排名已超过全球0.01%的设计师",
           "朋友，真的不考虑换个职业？",
           "推荐你看本书《你真的不适合做设计师》"
@@ -113,16 +117,16 @@ export default {
       ],
       // 身价集合
       worthArr: [
-        [2000,2900],
-        [1000,1990],
-        [500,999],
-        [250,449],
-        [150,249],
-        [110,149],
-        [60,109],
-        [40,59],
-        [30,39],
-        [10,29]
+        [2000, 2900],
+        [1000, 1990],
+        [500, 999],
+        [250, 449],
+        [150, 249],
+        [110, 149],
+        [60, 109],
+        [40, 59],
+        [30, 39],
+        [10, 29]
       ],
       // 排名
       meRank: "",
@@ -171,11 +175,14 @@ export default {
         ];
       var rank = "";
       var data = [];
-      worth = getRandomByScope(this.worthArr[10 - _this.rightNum][0],this.worthArr[10 - _this.rightNum][1])*10000
+      worth =
+        getRandomByScope(
+          this.worthArr[10 - _this.rightNum][0],
+          this.worthArr[10 - _this.rightNum][1]
+        ) * 10000;
 
       data.push(tip);
       data.push(worth);
-      
 
       if (this.rightNum == 10) {
         getRank(3, 10);
@@ -245,7 +252,6 @@ export default {
         // _this.meRank = rank;
         // _this.meTip = tip;
       }
-      
     }
   }
 };
@@ -254,10 +260,43 @@ export default {
 <style lang="less">
 body {
   background-image: url(~static/3.png);
-  padding-top: 1.2rem;
+  // padding-top: 1.2rem;
+}
+#app {
+  height: 100%;
+}
+#score {
+  height: 100%;
+}
+.me-data {
+  .p2, .name{
+    color: #fff;
+    .reset-font();
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .p1{
+    color: #d2bc00;
+    .reset-font();
+    font-family: 'KaiTi';    
+    font-size: 0.65rem;
+  }
+  .me-info {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #fff;
+  }
+  .me-num{
+    display: flex;
+  }
+  ._l,._r{
+    flex: 1;
+  }
 }
 .reset-font() {
-  font-family: initial;
+  font-family: Microsoft YaHei;
   letter-spacing: 0;
   font-size: 0.76rem;
 }
@@ -273,51 +312,52 @@ body {
     .reset-font;
   }
 }
-.me-info {
-  margin: 1rem auto 2rem;
-  padding: 1rem 1.5rem;
-  width: 14rem;
-  background: url(~static/4.png) no-repeat;
-  background-size: 100% 100%;
-  p {
-    text-align: center;
-    color: #00ff66;
-    .reset-font;
-  }
-  .p1 {
-    font-size: 0.75rem;
-  }
-  .p2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  > div:first-child {
-    border-bottom: 2px dashed #ffe520;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    display: block;
-    background: url(~static/17.png) no-repeat;
-    background-size: 100% 100%;
-    width: 1.5rem;
-    height: 1rem;
-    bottom: -0.6rem;
-    left: 50%;
-    margin-left: -0.75rem;
-  }
-  &:before {
-    content: " ";
-    display: block;
-    position: absolute;
-    left: 0.4rem;
-    top: 0.3rem;
-    width: 1.9rem;
-    height: 0.7rem;
-    background: url(~static/13.png) no-repeat;
-    background-size: contain;
-  }
-}
+
+// .me-info {
+//   margin: 1rem auto 2rem;
+//   padding: 1rem 1.5rem;
+//   width: 14rem;
+//   background: url(~static/4.png) no-repeat;
+//   background-size: 100% 100%;
+//   p {
+//     text-align: center;
+//     color: #00ff66;
+//     .reset-font;
+//   }
+//   .p1 {
+//     font-size: 0.75rem;
+//   }
+//   .p2 {
+//     font-size: 1.5rem;
+//     font-weight: bold;
+//   }
+//   > div:first-child {
+//     border-bottom: 2px dashed #ffe520;
+//   }
+//   &:after {
+//     content: "";
+//     position: absolute;
+//     display: block;
+//     background: url(~static/17.png) no-repeat;
+//     background-size: 100% 100%;
+//     width: 1.5rem;
+//     height: 1rem;
+//     bottom: -0.6rem;
+//     left: 50%;
+//     margin-left: -0.75rem;
+//   }
+//   &:before {
+//     content: " ";
+//     display: block;
+//     position: absolute;
+//     left: 0.4rem;
+//     top: 0.3rem;
+//     width: 1.9rem;
+//     height: 0.7rem;
+//     background: url(~static/13.png) no-repeat;
+//     background-size: contain;
+//   }
+// }
 
 .btns {
   text-align: center;
@@ -337,8 +377,24 @@ body {
     width: 3rem;
   }
 }
-.me-descri p{
+.me-descri p {
   padding: 0 1rem;
+}
+// sticky footer solve
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -30px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer,
+.page-wrap:after {
+  height: 30px;
+}
+.site-footer {
 }
 // .share_button {
 //   width: 6.025rem;

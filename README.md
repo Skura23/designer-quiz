@@ -1,5 +1,5 @@
 # designer-quiz
-A simple funny quiz of designer value. Uses Vue2.0 + vue-router + vuex + webpack +less.
+A simple funny quiz for designers. Uses Vue2.0 + vue-router + vuex + webpack +less.
 
 ## To Preview
 PC: https://skura23.github.io/designer-quiz/dist
